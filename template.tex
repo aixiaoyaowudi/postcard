@@ -1,0 +1,72 @@
+\documentclass{article}
+\pagestyle{empty}
+\usepackage{geometry}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{calligra}
+\usepackage{mathrsfs}
+\usepackage{eulervm}
+\usetikzlibrary{calc}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{math}
+\geometry{
+	paperwidth=154mm,
+	paperheight=104mm,
+	top=7mm,
+	bottom=6mm,
+	left=3mm,
+	right=3mm,
+}
+\tikzset{
+ use unit/.code={
+   \def\myUnit{#1}%
+   \pgfkeysalso{x=1#1,y=1#1}%
+ }
+}
+\begin{document}
+\begin{tikzpicture}[use unit=mm,]
+\node[label=below right:$UPPER_LEFT_TEXT$](lu) at (0,88) {};
+\tikzmath{\spirallen = 10;}
+\coordinate (0) at (138-\spirallen,88);
+\draw[thick] (lu) -- (0);
+\foreach \i [remember=\len as \lastlen (initially \spirallen)] in {1,...,20}
+{
+	\tikzmath{\j=\i-1;}
+	\draw[thick] (\j) arc (- 90 * \i + 180:- 90 * \i + 90:\lastlen) coordinate (\i);
+	\tikzmath{\len = \lastlen * 0.618;}
+}
+\node[label=above left:$LOWER_RIGHT_TEXT$](rd) at (138,0) {};
+\draw[thick] (0,0) -- (rd);
+\node at (69,49) {$\scalebox{SCALE_SIZE}{FORMULA}$};
+\node at (10,70) {$\scalebox{3}{$ALPHABET$}$};
+\node at (69,30) {\Huge \calligra FORM_NAME};
+% \node[circle,minimum size=14mm,draw=black,inner sep=0,outer sep=0]() at (8,8){};
+\foreach \i in {0,...,16}
+{
+\node[circle,fill=black,minimum size=0.4mm,inner sep=0,outer sep=0]() at ({8+cos(360.0/17*\i)*7},{8+sin(360.0/17*\i)*7}){};
+}
+\foreach \i in {0,...,16}
+{
+	\draw ({8+cos(360.0/17*\i)*7},{8+sin(360.0/17*\i)*7}) -- ({8+cos(360.0/17*(\i+1))*7},{8+sin(360.0/17*(\i+1))*7});
+}
+\node[circle,fill=black,minimum size=0.4mm,inner sep=0,outer sep=0]() at ({8+cos(360.0/17*5)*7},{8}){}; %G_6
+\node[circle,fill=black,minimum size=0.4mm,inner sep=0,outer sep=0]() at ({8+cos(360.0/17*3)*7},{8}){}; %M
+\draw ({8+cos(360.0/17*5)*7},{8+sin(360.0/17*5)*7}) -- ({8+cos(360.0/17*5)*7},{0});
+\draw ({8+cos(360.0/17*3)*7},{8+sin(360.0/17*3)*7}) -- ({8+cos(360.0/17*3)*7},{0});
+% \node[circle,fill=black,minimum size=0.4mm,inner sep=0,outer sep=0]() at ({8},{8+sqrt((7*(1-cos(360.0/17*3)))*(7*(1-cos(360.0/17*3)))-(7-7*(1-cos(360.0/17*3)))*(7-7*(1-cos(360.0/17*3))))}){};
+\draw (15,8) -- (8,8+7.0/4);
+\draw (15,8) -- (1,8);
+\draw (8,15) -- (8,1);
+\draw (15,8) arc (0:180:{7*(1-cos(360.0/17*3))});
+\draw (15,8) arc (0:-180:{7*(1-cos(360.0/17*3))});
+\node[circle,fill=black,minimum size=0.4mm,inner sep=0,outer sep=0]() at ({15-(1-cos(360.0/17*3))*7*2},{8}){}; %M
+\node[circle,fill=black,minimum size=0.4mm,inner sep=0,outer sep=0]() at ({((8+cos(360.0/17*3)*7)+(8+cos(360.0/17*5)*7))/2},{8}){};
+\draw ({8},{8+7.0/4}) -- ({8-(8+7.0/4)/(7.0/4)*((1-cos(360.0/17*3))*7*2-7)},0);
+\draw ({8+cos(360.0/17*3)*7},{8}) arc (0:180:{((8+cos(360.0/17*3)*7)-(8+cos(360.0/17*5)*7))/2});
+\draw ({8+cos(360.0/17*3)*7},{8}) arc (0:-180:{((8+cos(360.0/17*3)*7)-(8+cos(360.0/17*5)*7))/2});
+\draw ({8},{8+7.0/4}) -- ({8+(7.0/4+8)*tan(atan(4)/4)},{0});
+\draw ({8},{8+7.0/4}) -- ({8+(7.0/4+8)*tan(atan(4)/2)},{0});
+\draw ({8},{8+sqrt((7*(1-cos(360.0/17*3)))*(7*(1-cos(360.0/17*3)))-(7-7*(1-cos(360.0/17*3)))*(7-7*(1-cos(360.0/17*3))))}) -- ({((8+cos(360.0/17*3)*7)+(8+cos(360.0/17*5)*7))/2},{8});
+\end{tikzpicture}
+\end{document}

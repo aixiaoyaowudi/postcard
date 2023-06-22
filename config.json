@@ -1,0 +1,12 @@
+{
+    "A":{
+        "formula":"$\\\\displaystyle \\\\binom{n}{k}=\\\\binom{n-1}{k}+\\\\binom{n-1}{k-1}$",
+        "scale":2,
+        "formula_name":"Addition formula"
+    },
+    "V":{
+        "formula":"$\\\\displaystyle\\\\sum_{i}\\\\binom{n}{i}\\\\binom{m}{k-i}=\\\\binom{n+m}{k}$",
+        "scale":2,
+        "formula_name":"Vandermonde's identity"
+    }
+}
